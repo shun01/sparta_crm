@@ -5,7 +5,6 @@ class Customer < ApplicationRecord
 
   has_many :comments
 
-
   validates :family_name, presence: true, length: { maximum: 20 }
   validates :given_name, presence: true, length: { maximum: 20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
