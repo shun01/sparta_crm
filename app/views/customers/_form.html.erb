@@ -1,0 +1,61 @@
+<%= form_with model: customer, local: true do |form| %>
+
+   <% if customer.errors.any? %>
+    <div class="alert alert-danger">
+      <p><b><%= customer.errors.count %>件のエラーがあります</b></p>
+
+      <ul>
+      <% customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :family_name %><br>
+    <%= form.text_field :family_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :given_name %><br>
+    <%= form.text_field :given_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :email %><br>
+    <%= form.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :company_id %>
+    <%= form.collection_select :company_id, Company.all, :id, :name , { include_blank: "会社を選択してください" },  { class: "form-control" } %>
+  </div>
+  <div class="form-group">
+    <%= form.label :post_id %>
+    <%= form.collection_select :post_id, Post.all, :id, :position_name, { include_blank: "役職を選択してください" }, { class: "form-control" } %>
+  </div>
+  <%= form.submit class: "btn btn-primary" %>
+
+  <% if customer.persisted? %>
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#delete-customer">顧客情報を削除する</button>
+    <%= link_to '戻る', customer_path(@customer), class: "btn btn-secondary" %>
+  <% end %>
+<% end %>
+
+<div class="modal fade" id="delete-customer">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">顧客情報の削除</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><%= @customer.family_name %>さんを削除しますか？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+        <%= link_to '削除する', @customer, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

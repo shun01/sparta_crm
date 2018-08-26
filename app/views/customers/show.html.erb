@@ -1,2 +1,17 @@
-<h1>Customers#show</h1>
-<p>Find me in app/views/customers/show.html.erb</p>
+<div class="row">
+  <div class="col-lg-12">
+    <h1>顧客詳細</h1>
+    <dl>
+      <dt>お名前</dt>
+      <dd class="mb-2 ml-4"><%= @customer.full_name %></dd>
+      <dt>電子メール</dt>
+      <dd class="mb-2 ml-4"><%= @customer.email %></dd>
+      <dt>会社名</dt>
+      <dd class="mb-2 ml-4"><%= @customer.company.name %></dd>
+      <dt>役職名</dt>
+      <dd class="mb-2 ml-4"><%= @customer.post.position_name %></dd>
+    </dl>
+    <%= link_to '編集', edit_customer_path(@customer), class: "btn btn-primary" %>
+    <%= link_to '戻る', customers_path, class: "btn btn-secondary" %>
+  </div>
+</div>

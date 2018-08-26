@@ -1,2 +1,6 @@
-<h1>Customers#edit</h1>
-<p>Find me in app/views/customers/edit.html.erb</p>
+<div class="row">
+  <div class="col-lg-12">
+    <h1>顧客情報の編集</h1>
+    <%= render partial: 'form', locals: { customer: @customer } %>
+  </div>
+</div>
