@@ -13,5 +13,29 @@
     </dl>
     <%= link_to '編集', edit_customer_path(@customer), class: "btn btn-primary" %>
     <%= link_to '戻る', customers_path, class: "btn btn-secondary" %>
+
+    <hr />
+
+    <h2>対応履歴</h2>
+    <% @comments.each do |comment| %>
+      <div class="media mb-3">
+        <div class="media-body">
+          <%= simple_format(comment.body) %>
+          <div>
+            投稿日時：<%= comment.created_at.strftime('%Y-%m-%d %H:%M') %>
+            <%= link_to "削除する", comment_path(comment), method: :delete, class: "ml-2" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%= form_with model: @comment, url: { controller: :comments, action: :create }, local: true do |form| %>
+      <div class="form-group">
+        <%= form.label :body , '対応内容' %><br>
+        <%= form.text_area :body, class: "form-control" %>
+      </div>
+      <%= form.hidden_field :customer_id %>
+      <%= form.submit class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>

@@ -21,8 +21,6 @@ class CustomersController < ApplicationController
     end
   end
 
-
-
   def edit
     @customer = Customer.find(params[:id])
   end
@@ -37,7 +35,8 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:id])
+    @comment = @customer.comments.build
+    @comments = Comment.where(customer_id: @customer.id)
   end
 
   def destroy

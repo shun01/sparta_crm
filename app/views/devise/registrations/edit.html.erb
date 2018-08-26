@@ -41,9 +41,11 @@
 
       <div class="actions from-inline">
         <%= f.submit "更新する", class: "btn btn-primary" %>
-        <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に退会しますか？" }, method: :delete, class: "btn btn-warning" %>
-        <%= link_to "戻る", :back, class: "btn btn-secondary" %>
-        </div>
+      </div>
     <% end %>
+    <div class="form-inline mt-2">
+      <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に退会しますか？" }, method: :delete, class: "btn btn-warning" %>
+      <%= link_to "戻る", :back, class: "btn btn-secondary ml-2" %>
+    </div>
   </div>
 </div>

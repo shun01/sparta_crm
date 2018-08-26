@@ -3,6 +3,8 @@ class Customer < ApplicationRecord
   belongs_to :company
   belongs_to :post
 
+  has_many :comments
+
 
   validates :family_name, presence: true, length: { maximum: 20 }
   validates :given_name, presence: true, length: { maximum: 20 }
