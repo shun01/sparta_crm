@@ -7,10 +7,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <!-- ★★★★下記の#を後ほど正しいURLに変更 -->
-          <a class="nav-link" href="#">ダミー</a>
-        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "設定変更", edit_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

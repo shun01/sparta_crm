@@ -11,13 +11,56 @@
     <%= link_to '顧客登録', new_customer_path, class: "btn btn-info float-right mb-3" %>
   </div>
 </div>
+
+<%= search_form_for @q do |f| %>
+  <div class="row">
+    <div class="col-sm-3 col-xs-12">
+      <div class="form-group">
+        <%= f.label :family_name_cont, '姓' %>
+        <%= f.search_field :family_name_cont, class: "form-control input-sm" %>
+      </div>
+    </div>
+    <div class="col-sm-3 col-xs-12">
+      <div class="form-group">
+        <%= f.label :given_name_cont, '名' %>
+        <%= f.search_field :given_name_cont, class: "form-control input-sm" %>
+      </div>
+    </div>
+    <div class="col-sm-2 col-xs-12">
+      <div class="form-group">
+        <%= f.label :email_cont, '電子メール' %>
+        <%= f.search_field :email_cont, class: "form-control input-sm" %>
+      </div>
+    </div>
+    <div class="col-sm-2 col-xs-12">
+      <div class="form-group">
+        <%= f.label :company_name_cont, '会社名' %>
+        <%= f.search_field :company_name_cont, class: "form-control input-sm" %>
+      </div>
+    </div>
+    <div class="col-sm-2 col-xs-12">
+      <div class="form-group">
+        <%= f.label :post_position_name_cont, '役職名' %>
+        <%= f.search_field :post_position_name_cont, class: "form-control input-sm" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 mx-auto">
+      <%= f.submit "検索", class: "btn btn-info" %>
+      <%= link_to "リセット", request.path, class:"btn btn-secondary" %>
+    </div>
+  </div>
+<% end %>
+<hr />
+
 <table class="table table-striped table-hover">
   <thead class="thead-dark">
-    <th>姓</th>
-    <th>名</th>
-    <th>電子メール</th>
-    <th>所属会社</th>
-    <th>役職</th>
+    <th><%= sort_link(@q, :family_name, "姓") %></th>
+    <th><%= sort_link(@q, :given_name, "名") %></th>
+    <th><%= sort_link(@q, :email, "電子メール") %></th>
+    <th><%= sort_link(@q, :company_name, "所属会社") %></th>
+    <th><%= sort_link(@q, :post_position_name, "役職") %></th>
     <th>リンク</th>
   </thead>
   <tbody>
